@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="SISACADMovil.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:SISACADMovil.Views"
+    Title="SISACADMovil">
+
+    <!--<Shell.FlyoutHeader>
+        <VerticalStackLayout >
+            <Image x:Name="imgPerfil" Margin="10,10,10,10"/>
+ 
+        </VerticalStackLayout>
+    </Shell.FlyoutHeader>-->
+    <FlyoutItem x:Name="MenuPrincipalItem" Title="Inicio" Icon="icon_home.png" Shell.UnselectedColor="#EDDA9B">
+        <ShellContent ContentTemplate="{DataTemplate local:MenuPrincipal}" />
+    </FlyoutItem>
+
+    <FlyoutItem x:Name="CalificacionesItem" Title="Calificaciones" Icon="icon_grades.png" Shell.UnselectedColor="#EDDA9B">
+        <ShellContent Shell.BackgroundColor="white" ContentTemplate="{DataTemplate local:Calificaciones}" />
+    </FlyoutItem>
+
+    <FlyoutItem x:Name="ConoceDocentesItem" Title="Conoce a tus Docentes" Icon="icon_groups.png" Shell.UnselectedColor="#EDDA9B">
+        <ShellContent Shell.BackgroundColor="white" ContentTemplate="{DataTemplate local:Plataformas}" />
+    </FlyoutItem>
+
+    <FlyoutItem x:Name="HorariosItem" Title="Horarios" Icon="icon_schedule.png" Shell.UnselectedColor="#EDDA9B">
+        <ShellContent Shell.BackgroundColor="white" ContentTemplate="{DataTemplate local:Horarios}" />
+    </FlyoutItem>
+    <FlyoutItem x:Name="TutoriasItem" Title="Tutorias" Icon="icon_schedule.png" Shell.UnselectedColor="#EDDA9B">
+        <ShellContent Shell.BackgroundColor="white" ContentTemplate="{DataTemplate local:Tutorias}" />
+    </FlyoutItem>
+
+    <FlyoutItem x:Name="HorariosDocentesItem" Title="Horarios Docentes" Icon="icon_schedule.png" Shell.UnselectedColor="#EDDA9B">
+        <ShellContent Shell.BackgroundColor="white" ContentTemplate="{DataTemplate local:HorariosDocentes}" />
+    </FlyoutItem>
+
+    <FlyoutItem x:Name="SalirItem" Title="Salir" Icon="icon_logout.png" Shell.UnselectedColor="#EDDA9B" >
+        <ShellContent  Shell.BackgroundColor="white" ContentTemplate="{DataTemplate local:Login}" />
+    </FlyoutItem>
+
+</Shell>
+

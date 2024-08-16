@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:SISACADMovil.ViewModels"
+             x:Class="SISACADMovil.MainPage"
+             BackgroundColor="Transparent"
+             Shell.NavBarIsVisible="False"
+              BackgroundImageSource="inicio.png">
+
+    <ContentPage.BindingContext>
+        <viewmodel:MainViewModel></viewmodel:MainViewModel>
+    </ContentPage.BindingContext>
+
+    <StackLayout VerticalOptions="CenterAndExpand" 
+                 Margin="0,230,0,0" Spacing="15"
+                 Padding="40">
+
+        <Entry x:Name="usernameEntry"
+            Placeholder="Usuario" 
+                   PlaceholderColor="LightGray" 
+                   TextColor="White"
+                   BackgroundColor="Transparent"
+                   HeightRequest="50"
+                   FontSize="18">
+        </Entry>
+
+        <Entry x:Name="passwordEntry"
+            Placeholder="Contraseña" 
+                   PlaceholderColor="LightGray" 
+                   TextColor="White"
+                   IsPassword="True"
+                   BackgroundColor="Transparent"
+                   HeightRequest="50"
+                   FontSize="18">
+        </Entry>
+
+        <!-- Botón de inicio de sesión -->
+        <Button Text="Iniciar Sesión"
+                BackgroundColor="#007AFF"
+                TextColor="White"
+                Margin="0,20,0,0"
+                Clicked="OnLoginButtonClicked" />
+
+        <!-- Mensaje de error -->
+        <Label x:Name="errorMessage"
+               Text=""
+               TextColor="Red"
+               HorizontalOptions="Center"
+               IsVisible="False" />
+    </StackLayout>
+
+</ContentPage>

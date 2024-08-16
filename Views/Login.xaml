@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SISACADMovil.ViewModels"
+             x:Class="SISACADMovil.Views.Login"
+             BackgroundColor="#232a33"
+             Shell.NavBarIsVisible="False"
+             BackgroundImageSource="inicio.png">
+
+    <ContentPage.BindingContext>
+        <local:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <Style x:Key="EstiloEntrada" TargetType="Entry">
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="HeightRequest" Value="50" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="PlaceholderColor" Value="#d2b171" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="Margin" Value="0,0,0,5" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid>
+        <StackLayout VerticalOptions="CenterAndExpand" 
+                     Margin="0,230,0,0" Spacing="15"
+                     Padding="40">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Image Source="icon_user.png" WidthRequest="15" HeightRequest="15" Margin="5,0"/>
+                <Entry x:Name="entradaUsuario" 
+                       Placeholder="Usuario"  
+                       Text="{Binding NombreUsuario}"
+                       Style="{StaticResource EstiloEntrada}">
+                </Entry>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Image Source="icon_password.png" WidthRequest="15" HeightRequest="15" Margin="5,0"/>
+                <Entry x:Name="entradaContrasena"
+                       Placeholder="Contraseña"
+                       IsPassword="True"
+                       Text="{Binding Contrasena}"
+                       Style="{StaticResource EstiloEntrada}">
+                </Entry>
+            </StackLayout>
+
+            <Button Text="Iniciar Sesión"
+                    BackgroundColor="#D2B171"
+                    TextColor="White"
+                    Margin="0,20,0,0"
+                    HorizontalOptions="FillAndExpand"
+                    Command="{Binding ComandoIniciarSesion}" />
+        </StackLayout>
+
+        <Frame Padding="0" HasShadow="True" CornerRadius="5" HeightRequest="100" WidthRequest="100" 
+               BackgroundColor="Gray" Opacity="0.8"
+               HorizontalOptions="Center" VerticalOptions="Center"
+               IsVisible="{Binding Ocupado}">
+            <StackLayout Orientation="Vertical" 
+                         VerticalOptions="CenterAndExpand" 
+                         HorizontalOptions="CenterAndExpand" 
+                         Spacing="10">
+                <ActivityIndicator IsRunning="{Binding Ocupado}" 
+                                   IsVisible="{Binding Ocupado}" 
+                                   Color="#D2B171" />
+                <Label Text="Cargando" FontSize="12" 
+                       TextColor="White" 
+                       FontAttributes="Bold" />
+            </StackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>

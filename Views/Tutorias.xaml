@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SISACADMovil.ViewModels"
+             x:Class="SISACADMovil.Views.Tutorias"
+             BackgroundColor="White"
+             Title="Tutorías">
+
+    <ContentPage.BindingContext>
+        <local:TutoriasViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10" Spacing="10">
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#D5F5E3" VerticalOptions="Center"/>
+                        <Label Text="Asistido" VerticalOptions="Center" Padding="5" FontSize="15"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#F5B7B1" VerticalOptions="Center"/>
+                        <Label Text="Falta" VerticalOptions="Center" Padding="5" FontSize="15"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#FDEBD0" VerticalOptions="Center"/>
+                        <Label Text="Por Asistir" VerticalOptions="Center" Padding="5" FontSize="15"/>
+                    </StackLayout>
+                </StackLayout>
+                <CollectionView ItemsSource="{Binding Tutorias}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Margin="10,5">
+                                <!-- Espacio entre los elementos -->
+                                <Frame BackgroundColor="{Binding color}">
+                                    <StackLayout Orientation="Horizontal" Spacing="10">
+                                        <Label Text="{Binding Modulo , StringFormat='Módulo {0}'}" TextColor="Black"/>
+                                        <Label Text="{Binding Materia}" TextColor="Black"/>
+                                    </StackLayout>
+                                </Frame>
+                                <StackLayout Padding="13" BackgroundColor="#222B32" Spacing="20">
+                                    <Label Text="{Binding Pro_Nombre, StringFormat='Docente: {0}'}" TextColor="White"/>
+                                    <Label Text="{Binding FechaNovedad, StringFormat='Fecha Tutoría: {0}'}" TextColor="White"/>
+                                    <Label Text="{Binding Estado, StringFormat='Estado de Asistencia: {0}'}" TextColor="White"/>
+                                    <Label Text="{Binding Motivo, StringFormat='Motivo de Tutoría: {0}'}" TextColor="White"/>
+                                    <Label Text="{Binding Observacion, StringFormat='Observación: {0}'}" TextColor="White"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+    
+</ContentPage>

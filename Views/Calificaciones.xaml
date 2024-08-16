@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+              xmlns:micro="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+             xmlns:local="clr-namespace:SISACADMovil.ViewModels"
+             x:Class="SISACADMovil.Views.Calificaciones"
+             Title="Calificaciones">
+    <ContentPage.BindingContext>
+        <local:CalificacionesViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="10">
+                    <Image Source="icon_books_aditional.png" WidthRequest="25" HeightRequest="25" />
+                    <Label Text="CALIFICACIONES" FontSize="20" FontAttributes="Bold" Padding="10"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10" Spacing="1">
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#D5F5E3" VerticalOptions="Center"/>
+                        <Label Text="APROBADA" VerticalOptions="Center" Padding="5"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#F5B7B1" VerticalOptions="Center"/>
+                        <Label Text="REPROBADA" VerticalOptions="Center" Padding="5"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#FDEBD0" VerticalOptions="Center"/>
+                        <Label Text="SIN REGISTRO" VerticalOptions="Center" Padding="5"/>
+                    </StackLayout>
+                </StackLayout>
+                <!-- Calificaciones de materias -->
+                <CollectionView ItemsSource="{Binding Calificaciones}" >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Margin="0,0,0,10">
+
+                                <toolkit:Expander>
+                                    <toolkit:Expander.Header>
+                                        <Frame BackgroundColor="{Binding VersionCalificaciones}" >
+                                            <StackLayout>
+                                                <Label Text="{Binding Materia}"  TextColor="Black"/>
+                                                <Label Text="{Binding Pro_nombre}"  TextColor="Black"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </toolkit:Expander.Header>
+                                    <toolkit:Expander.Content>
+                                        <StackLayout Padding="10">
+                                            <Grid Padding="5" RowSpacing="1" ColumnSpacing="1">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Frame Grid.Row="0" Grid.Column="0" BorderColor="Black" CornerRadius="0" Padding="0" Margin="0">
+                                                    <Label Text="{Binding nombreAporte1}" FontSize="10" BackgroundColor="#232a33" HorizontalTextAlignment="Center" TextColor="White" Padding="5"/>
+                                                </Frame>
+                                                <Frame Grid.Row="0" Grid.Column="1" BorderColor="Black" CornerRadius="0" Padding="0" Margin="0">
+                                                    <Label Text="{Binding nombreAporte2}" FontSize="10" BackgroundColor="#232a33" HorizontalTextAlignment="Center" TextColor="White" Padding="5"/>
+                                                </Frame>
+                                                <Frame Grid.Row="0" Grid.Column="2" BorderColor="Black" CornerRadius="0" Padding="0" Margin="0">
+                                                    <Label Text="{Binding nombreAporte3}" FontSize="10" BackgroundColor="#232a33" HorizontalTextAlignment="Center" TextColor="White" Padding="5"/>
+                                                </Frame>
+                                                <Frame Grid.Row="0" Grid.Column="3" BorderColor="Black" CornerRadius="0" Padding="0" Margin="0">
+                                                    <Label Text="{Binding nombreAporte4}" FontSize="10" BackgroundColor="#232a33" HorizontalTextAlignment="Center" TextColor="White" Padding="5"/>
+                                                </Frame>
+                                                <Frame Grid.Row="0" Grid.Column="4" BorderColor="Black" CornerRadius="0" Padding="0" Margin="0">
+                                                    <Label Text="{Binding nombreAporte5}" FontSize="10" BackgroundColor="#232a33" HorizontalTextAlignment="Center" TextColor="White" Padding="5"/>
+                                                </Frame>
+
+                                                <Frame Grid.Row="1" Grid.Column="0" BorderColor="Black" CornerRadius="0" Padding="0" Margin="0">
+                                                    <Label Text="{Binding Aporte1}"  HorizontalOptions="Center" Padding="5"/>
+                                                </Frame>
+                                                <Frame Grid.Row="1" Grid.Column="1" BorderColor="Black" CornerRadius="0" Padding="0" Margin="0">
+                                                    <Label Text="{Binding Aporte2}"  HorizontalOptions="Center" Padding="5"/>
+                                                </Frame>
+                                                <Frame Grid.Row="1" Grid.Column="2" BorderColor="Black" CornerRadius="0" Padding="0" Margin="0">
+                                                    <Label Text="{Binding Aporte3}"  HorizontalOptions="Center" Padding="5"/>
+                                                </Frame>
+                                                <Frame Grid.Row="1" Grid.Column="3" BorderColor="Black" CornerRadius="0" Padding="0" Margin="0">
+                                                    <Label Text="{Binding cuaderno}" HorizontalOptions="Center" Padding="5"/>
+                                                </Frame>
+                                                <Frame Grid.Row="1" Grid.Column="4" BorderColor="Black" CornerRadius="0" Padding="0" Margin="0">
+                                                    <Label Text="{Binding proyecto}"  HorizontalOptions="Center" Padding="5"/>
+                                                </Frame>
+                                            </Grid>
+
+                                            <Grid Padding="10" Margin="0,10,0,0" RowSpacing="1" ColumnSpacing="1" HorizontalOptions="CenterAndExpand">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Frame Grid.Row="0" Grid.Column="0" BorderColor="Black" CornerRadius="0" Padding="0" Margin="0" >
+                                                    <Label Text="Nota Final" FontSize="10" Padding="10" BackgroundColor="#232a33" TextColor="White"/>
+                                                </Frame>
+                                                <Frame Grid.Row="0" Grid.Column="1" BorderColor="Black" CornerRadius="0" Padding="0" Margin="0">
+                                                    <Label Text="Estado"  FontSize="10" Padding="10" BackgroundColor="#232a33" TextColor="White"/>
+                                                </Frame>
+                                                <Frame Grid.Row="0" Grid.Column="2" BorderColor="Black" CornerRadius="0" Padding="0" Margin="0">
+                                                    <Label Text="Asistencia"  FontSize="10" Padding="10" BackgroundColor="#232a33" TextColor="White"/>
+                                                </Frame>
+
+                                                <Frame Grid.Row="1" Grid.Column="0" BorderColor="Black" CornerRadius="0" Padding="0" Margin="0" BackgroundColor="{Binding VersionCalificaciones}">
+                                                    <Label Text="{Binding Nota_final}" Padding="10" HorizontalOptions="Center" />
+                                                </Frame>
+                                                <Frame Grid.Row="1" Grid.Column="1" BorderColor="Black" CornerRadius="0" Padding="0" Margin="0" BackgroundColor="{Binding VersionCalificaciones}">
+                                                    <Label Text="{Binding Estado}"  Padding="10" HorizontalOptions="Center"/>
+                                                </Frame>
+                                                <Frame Grid.Row="1" Grid.Column="2" BorderColor="Black" CornerRadius="0" Padding="0" Margin="0" BackgroundColor="{Binding VersionCalificaciones}">
+                                                    <Label Text="{Binding Asistencia}" Padding="10" HorizontalOptions="Center"/>
+                                                </Frame>
+                                            </Grid>
+
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="3">
+                                                <Label Text="Resumen Actividades" FontSize="15" FontAttributes="Bold" Padding="3"/>
+                                            </StackLayout>
+
+                                            <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Padding="5" Spacing="1">
+                                                <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                                                    <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="Green" VerticalOptions="Center"/>
+                                                    <Label Text="EXCELENTE" VerticalOptions="Center" Padding="5"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                                                    <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="Yellow" VerticalOptions="Center"/>
+                                                    <Label Text="DESARROLLADO" VerticalOptions="Center" Padding="5"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                                                    <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="Orange" VerticalOptions="Center"/>
+                                                    <Label Text="EN DESARROLLO" VerticalOptions="Center" Padding="5"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                                                    <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="Red" VerticalOptions="Center"/>
+                                                    <Label Text="INICIAL" VerticalOptions="Center" Padding="5"/>
+                                                </StackLayout>
+                                            </StackLayout>
+
+                                            <CollectionView ItemsSource="{Binding Actividades}">
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid Padding="3" RowSpacing="0" ColumnSpacing="0" WidthRequest="370">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="Auto"/>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="2*"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <Frame Grid.Row="0" Grid.Column="0" BorderColor="Black" CornerRadius="1" BackgroundColor="#232a33" Padding="0" Margin="0">
+                                                                <Label Text="{Binding tipoComponenteEvaluacion}" FontSize="12" Padding="5" TextColor="White"/>
+                                                            </Frame>
+
+                                                            <Frame Grid.Row="0" Grid.Column="1" BorderColor="Black" CornerRadius="1" Padding="0" Margin="0" BackgroundColor="{Binding colorActividad}">
+                                                                <Label Text="{Binding nota_final}" FontSize="12" HorizontalOptions="Center" Padding="5"/>
+                                                            </Frame>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
+                                            </CollectionView>
+                                        </StackLayout>
+                                    </toolkit:Expander.Content>
+                                </toolkit:Expander>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="10">
+                    <Image Source="icon_books_aditional.png" WidthRequest="25" HeightRequest="25" />
+                    <Label Text="ANALISIS DE RESULTADOS" FontSize="20" FontAttributes="Bold" Padding="10"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10" Spacing="1">
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#D5F5E3" VerticalOptions="Center"/>
+                        <Label Text="APROBADA" VerticalOptions="Center" Padding="5"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#F5B7B1" VerticalOptions="Center"/>
+                        <Label Text="REPROBADA" VerticalOptions="Center" Padding="5"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#FDEBD0" VerticalOptions="Center"/>
+                        <Label Text="SIN REGISTRO" VerticalOptions="Center" Padding="5"/>
+                    </StackLayout>
+                </StackLayout>
+                <micro:ChartView x:Name="chName" HeightRequest="400"  Margin="10,10,10,10"  ></micro:ChartView>
+            </VerticalStackLayout>
+        </ScrollView>
+        <Frame Padding="0" HasShadow="True" CornerRadius="5" HeightRequest="100" WidthRequest="75" IsVisible="{Binding IsBusy}" BackgroundColor="Gray" HorizontalOptions="Center" >
+            <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding IsBusy}" Spacing="10">
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" 
+           VerticalOptions="CenterAndExpand" HorizontalOptions="Center" BackgroundColor="Gray"
+           Color="#D2B171" />
+                <Label Text="Cargando" FontSize="10"  IsVisible="{Binding IsBusy}"  TextColor="White" FontAttributes="Bold" Padding="10"/>
+            </StackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>

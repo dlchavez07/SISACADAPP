@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SISACADMovil.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="SISACADMovil.Views.Plataformas">
+
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout>
+
+                <!-- MATERIAS DE LA CARRERA -->
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="10">
+                    <Image Source="icon_book.png" WidthRequest="25" HeightRequest="25" />
+                    <Label Text="MATERIAS DE LA CARRERA" FontSize="20" FontAttributes="Bold" Padding="10"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10" Spacing="1">
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#D5F5E3" VerticalOptions="Center"/>
+                        <Label Text="APROBADA" VerticalOptions="Center" Padding="5"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#F5B7B1" VerticalOptions="Center"/>
+                        <Label Text="REPROBADA" VerticalOptions="Center" Padding="5"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#FDEBD0" VerticalOptions="Center"/>
+                        <Label Text="EN CURSO" VerticalOptions="Center" Padding="5"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#AED6F1" VerticalOptions="Center"/>
+                        <Label Text="POR TOMAR" VerticalOptions="Center" Padding="5"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <Grid>
+                    <Button Text="❮" Command="{Binding PreviousCommand}" 
+                            VerticalOptions="Center" 
+                            HorizontalOptions="Start" 
+                            WidthRequest="60" 
+                            HeightRequest="60" 
+                            FontSize="Large"
+                            BackgroundColor="Transparent" 
+                            TextColor="#d2b171"
+                            FontAttributes="Bold"/>
+
+                    <CarouselView x:Name="carousel" ItemsSource="{Binding Schedules}" HeightRequest="580" WidthRequest="350">
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="10" BackgroundColor="#222B32">
+                                    <VerticalStackLayout >
+                                        <Frame CornerRadius="5" BorderColor="Gray" HasShadow="False" Padding="0" >
+                                            <StackLayout Orientation="Horizontal" Padding="10" Spacing="10" BackgroundColor="{Binding Color}">
+                                                <Label Text="{Binding Modulo , StringFormat='Módulo {0}'}" FontSize="13" VerticalOptions="Center" />
+                                                <Label Text="{Binding Materias, StringFormat='{0}'}" FontSize="13" VerticalOptions="Center" Padding="10" HorizontalOptions="FillAndExpand" WidthRequest="250" LineBreakMode="WordWrap" />
+                                            </StackLayout>
+                                        </Frame>
+                                        <StackLayout Orientation="Vertical" HorizontalOptions="Center" Padding="10">
+                                            <Label Text="{Binding Docentes, StringFormat='Docente: {0}'}" FontSize="13" FontAttributes="Bold" Padding="5" TextColor="White"/>
+                                            <Label Text="{Binding Aula , StringFormat='Aula: {0}'}" FontSize="13" FontAttributes="Bold" Padding="5" TextColor="White"/>
+                                            <Label Text="{Binding Teams , StringFormat='Teams: {0}'}" FontSize="13" FontAttributes="Bold" Padding="5" TextColor="White"/>
+                                            <Label Text="{Binding correo , StringFormat='Correo: {0}'}" FontSize="13" FontAttributes="Bold" Padding="5" TextColor="White"/>
+                                        </StackLayout>
+                                        <Frame CornerRadius="20" BorderColor="Gray" HasShadow="True" Padding="0" Margin="10">
+                                            <Image Source="{Binding Foto}" HeightRequest="250" />
+                                        </Frame>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="20">
+                                            <Label Text="Unirse al equipo: " FontSize="13" FontAttributes="Bold" Padding="5" TextColor="White" />
+                                            <ImageButton Source="icon_Telegram.png" WidthRequest="50" HeightRequest="30" 
+                                                 CommandParameter="{Binding Telegram}" Clicked="OnTelegramImageButtonClicked" />
+                                        </StackLayout>
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                        <CarouselView.IndicatorView>
+                            <IndicatorView IndicatorColor="Gray" SelectedIndicatorColor="Black" />
+                        </CarouselView.IndicatorView>
+                    </CarouselView>
+
+                    <Button Text="❯" Command="{Binding NextCommand}" 
+                            VerticalOptions="Center" 
+                            HorizontalOptions="End" 
+                            WidthRequest="60" 
+                            HeightRequest="60" 
+                            FontSize="Large"
+                            BackgroundColor="Transparent" 
+                            TextColor="#d2b171"
+                            FontAttributes="Bold"/>
+                </Grid>
+
+                <!-- MATERIAS ADICIONALES -->
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="10">
+                    <Image Source="icon_books_aditional.png" WidthRequest="25" HeightRequest="25" />
+                    <Label Text="MATERIAS ADICIONALES" FontSize="20" FontAttributes="Bold" Padding="10"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10" Spacing="1">
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#D5F5E3" VerticalOptions="Center"/>
+                        <Label Text="APROBADA" VerticalOptions="Center" Padding="5"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#F5B7B1" VerticalOptions="Center"/>
+                        <Label Text="REPROBADA" VerticalOptions="Center" Padding="5"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#FDEBD0" VerticalOptions="Center"/>
+                        <Label Text="EN CURSO" VerticalOptions="Center" Padding="5"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#AED6F1" VerticalOptions="Center"/>
+                        <Label Text="POR TOMAR" VerticalOptions="Center" Padding="5"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <Grid>
+                    <Button Text="❮" Command="{Binding PreviousCommand}" 
+                            VerticalOptions="Center" 
+                            HorizontalOptions="Start" 
+                            WidthRequest="60" 
+                            HeightRequest="60"
+                            FontSize="Large"
+                            BackgroundColor="Transparent" 
+                            TextColor="#d2b171"
+                            FontAttributes="Bold"/>
+
+                    <CarouselView x:Name="additionalCarousel" ItemsSource="{Binding AdditionalSchedules}" HeightRequest="580" WidthRequest="350">
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="10" BackgroundColor="#222B32">
+                                    <VerticalStackLayout>
+                                        <Frame CornerRadius="5" BorderColor="Gray" HasShadow="False" Padding="0">
+                                            <StackLayout Orientation="Horizontal" Padding="10" BackgroundColor="{Binding Color}" Spacing="20">
+                                                <Label Text="{Binding Modulo , StringFormat='Módulo {0}'}" FontSize="11" VerticalOptions="Center" />
+                                                <Label Text="{Binding Materias, StringFormat='{0}'}" FontSize="11" VerticalOptions="Center" Padding="10" HorizontalOptions="FillAndExpand" WidthRequest="250" LineBreakMode="WordWrap" />
+                                            </StackLayout>
+                                        </Frame>
+                                        <StackLayout Orientation="Vertical" HorizontalOptions="Center" Padding="20">
+                                            <Label Text="{Binding Docentes, StringFormat='Docente: {0}'}" FontSize="13" FontAttributes="Bold" Padding="5" TextColor="White"/>
+                                            <Label Text="{Binding Aula , StringFormat='Aula: {0}'}" FontSize="13" FontAttributes="Bold" Padding="5" TextColor="White"/>
+
+                                            <Label Text="{Binding Teams , StringFormat='Teams: {0}'}" FontSize="13" FontAttributes="Bold" Padding="5" TextColor="White"/>
+                                            <Label Text="{Binding correo , StringFormat='Correo: {0}'}" FontSize="13" FontAttributes="Bold" Padding="5" TextColor="White"/>
+                                        </StackLayout>
+                                        <Frame CornerRadius="20" BorderColor="Gray" HasShadow="True" Padding="0" Margin="10">
+                                            <Image Source="{Binding Foto}" HeightRequest="175" />
+                                        </Frame>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="20">
+                                            <Label Text="Unirse al equipo: " FontSize="13" FontAttributes="Bold" Padding="5" TextColor="White" />
+                                            <ImageButton Source="icon_Telegram.png" WidthRequest="50" HeightRequest="30" 
+                                                 CommandParameter="{Binding Telegram}" Clicked="OnTelegramImageButtonClicked" />
+                                        </StackLayout>
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+
+                    <Button Text="❯" Command="{Binding NextCommand}" 
+                            VerticalOptions="Center" 
+                            HorizontalOptions="End" 
+                            WidthRequest="60" 
+                            HeightRequest="60" 
+                            FontSize="Large"
+                            BackgroundColor="Transparent" 
+                            TextColor="#d2b171"
+                            FontAttributes="Bold"/>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+        <Frame Padding="0" HasShadow="True" CornerRadius="5" HeightRequest="100" WidthRequest="75" IsVisible="{Binding IsBusy}" BackgroundColor="Gray" HorizontalOptions="Center" >
+            <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding IsBusy}" Spacing="10">
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" 
+           VerticalOptions="CenterAndExpand" HorizontalOptions="Center" BackgroundColor="Gray"
+           Color="#D2B171" />
+                <Label Text="Cargando" FontSize="10"  IsVisible="{Binding IsBusy}"  TextColor="White" FontAttributes="Bold" Padding="10"/>
+            </StackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>

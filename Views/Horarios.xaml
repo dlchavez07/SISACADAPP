@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="SISACADMovil.Views.Horarios"
+             xmlns:local="clr-namespace:SISACADMovil.ViewModels"
+             Title="Horarios">
+
+    <ContentPage.BindingContext>
+        <local:HorariosViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Estilo para el Expander -->
+            <Style TargetType="toolkit:Expander">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Padding" Value="5" />
+            </Style>
+
+            <!-- Estilo para el StackLayout del header del Expander -->
+            <Style TargetType="StackLayout" x:Key="ExpanderHeaderStyle">
+                <Setter Property="Orientation" Value="Horizontal" />
+                <Setter Property="Padding" Value="5" />
+            </Style>
+
+            <!-- Estilo para el StackLayout del contenido del Expander -->
+            <Style TargetType="StackLayout" x:Key="ExpanderContentStyle">
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="BackgroundColor" Value="White"  />
+            </Style>
+
+            <!-- Estilo para el Grid dentro del contenido del Expander -->
+            <Style TargetType="Grid" x:Key="ExpanderGridStyle">
+                <Setter Property="Padding" Value="3" />
+                <Setter Property="RowSpacing" Value="3" />
+                <Setter Property="ColumnSpacing" Value="10" />
+            </Style>
+
+            <!-- Estilo para Labels generales -->
+            <Style TargetType="Label" x:Key="GeneralLabelStyle">
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Margin" Value="5" />
+            </Style>
+
+            <!-- Estilo para Labels de jornadas -->
+            <Style TargetType="Label" x:Key="JornadaLabelStyle">
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="Padding" Value="2" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout>
+
+                <!-- MATERIAS DE LA CARRERA -->
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="10">
+                    <Image Source="icon_book.png" WidthRequest="25" HeightRequest="25" />
+                    <Label Text="MATERIAS DE LA CARRERA" FontSize="20" FontAttributes="Bold" Padding="10"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10" Spacing="1">
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#D5F5E3" VerticalOptions="Center"/>
+                        <Label Text="APROBADA" VerticalOptions="Center" Padding="5"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#F5B7B1" VerticalOptions="Center"/>
+                        <Label Text="REPROBADA" VerticalOptions="Center" Padding="5"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#FDEBD0" VerticalOptions="Center"/>
+                        <Label Text="EN CURSO" VerticalOptions="Center" Padding="5"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#AED6F1" VerticalOptions="Center"/>
+                        <Label Text="POR TOMAR" VerticalOptions="Center" Padding="5"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <CollectionView ItemsSource="{Binding Schedules}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <toolkit:Expander>
+                                <toolkit:Expander.Header>
+                                    <Frame CornerRadius="3" Padding="0" HasShadow="False" BorderColor="Gray"  BackgroundColor="{Binding Color}">
+                                        <StackLayout Style="{StaticResource ExpanderHeaderStyle}" BackgroundColor="{Binding Color}">
+                                            <Image Source="icon_asignatura.png" WidthRequest="20" HeightRequest="20" />
+                                            <Label Text="{Binding Modulo , StringFormat='Módulo {0}'}" FontSize="15" VerticalOptions="Center" Padding="5"/>
+                                            <Label Text="{Binding Materias}" FontSize="15" VerticalOptions="Center" Padding="15,0,0,0" 
+                                           HorizontalOptions="FillAndExpand" WidthRequest="300" LineBreakMode="WordWrap" />
+                                        </StackLayout>
+                                    </Frame>
+                                </toolkit:Expander.Header>
+                                <toolkit:Expander.Content>
+                                    <Frame CornerRadius="5" Padding="0" HasShadow="False" BorderColor="Gray" >
+                                        <StackLayout Padding="10" BackgroundColor="White"  >
+                                            <StackLayout Padding="1" BackgroundColor="White" Margin="5" HorizontalOptions="FillAndExpand" Spacing="7">
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                                    <Image Source="icon_docente.png" WidthRequest="15" HeightRequest="15" Margin="5,0"/>
+                                                    <Label Text="{Binding Docentes, StringFormat='Docente: {0}'}"  WidthRequest="300" LineBreakMode="WordWrap" VerticalOptions="Center"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                                    <Image Source="icon_aula.png" WidthRequest="15" HeightRequest="15" Margin="5,0"/>
+                                                    <Label Text="{Binding Aula , StringFormat='Aula: {0}'}"  WidthRequest="300" LineBreakMode="WordWrap" VerticalOptions="Center"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                                    <Image Source="icon_calendar.png" WidthRequest="15" HeightRequest="15" Margin="5,0"/>
+                                                    <Label Text="{Binding FechaInicioFormatted, StringFormat='Desde: {0:dd/MM/yyyy}'}"  VerticalOptions="Center"/>
+                                                    <Image Source="icon_calendar.png" WidthRequest="15" HeightRequest="15" Margin="5,0"/>
+                                                    <Label Text="{Binding FechaFinFormatted, StringFormat='Hasta: {0:dd/MM/yyyy}'}"  VerticalOptions="Center"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Spacing="5">
+                                                    <Image Source="icon_time.png" WidthRequest="15" HeightRequest="15" Margin="5,0"/>
+                                                    <Label Text="Dias y Jornadas" HorizontalOptions="FillAndExpand"   VerticalOptions="Center"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                            <!-- Tabla de Jornadas -->
+                                            <Grid  Padding="10">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="2*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <CollectionView ItemsSource="{Binding HorarioDias}" Grid.Row="1" Grid.ColumnSpan="2"   HorizontalOptions="Center" WidthRequest="400">
+                                                    <CollectionView.ItemTemplate>
+                                                        <DataTemplate >
+                                                            <Grid HorizontalOptions="Center" >
+                                                                <Grid.RowDefinitions>
+                                                                    <RowDefinition Height="Auto"/>
+                                                                </Grid.RowDefinitions>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="100"/>
+                                                                    <!-- Ancho fijo de 100 unidades -->
+                                                                    <ColumnDefinition Width="250"/>
+                                                                    <!-- Ancho fijo de 200 unidades -->
+                                                                </Grid.ColumnDefinitions>
+
+                                                                <!-- Datos de la jornada -->
+                                                                <Frame Grid.Row="0" Grid.Column="0" BorderColor="Black" CornerRadius="0" Padding="0" Margin="0" BackgroundColor="#232a33">
+                                                                    <Label Text="{Binding Dia}" FontSize="13" Padding="5" VerticalOptions="Center" HorizontalOptions="Start" TextColor="White"/>
+                                                                </Frame>
+                                                                <Frame Grid.Row="0" Grid.Column="1" BorderColor="Black" CornerRadius="0" Padding="0" Margin="0">
+                                                                    <Label Text="{Binding HorasString}" FontSize="13" Padding="5" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                                                </Frame>
+                                                            </Grid>
+                                                        </DataTemplate>
+                                                    </CollectionView.ItemTemplate>
+                                                </CollectionView>
+                                            </Grid>
+                                        </StackLayout>
+                                    </Frame>
+                                </toolkit:Expander.Content>
+                            </toolkit:Expander>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- MATERIAS ADICIONALES -->
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="10">
+                    <Image Source="icon_books_aditional.png" WidthRequest="25" HeightRequest="25" />
+                    <Label Text="MATERIAS ADICIONALES" FontSize="20" FontAttributes="Bold" Padding="10"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10" Spacing="1">
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#D5F5E3" VerticalOptions="Center"/>
+                        <Label Text="APROBADA" VerticalOptions="Center" Padding="5"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#F5B7B1" VerticalOptions="Center"/>
+                        <Label Text="REPROBADA" VerticalOptions="Center" Padding="5"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#FDEBD0" VerticalOptions="Center"/>
+                        <Label Text="EN CURSO" VerticalOptions="Center" Padding="5"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView WidthRequest="15" HeightRequest="15" CornerRadius="10" BackgroundColor="#AED6F1" VerticalOptions="Center"/>
+                        <Label Text="POR TOMAR" VerticalOptions="Center" Padding="5"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <CollectionView ItemsSource="{Binding AdditionalSchedules}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <toolkit:Expander>
+                                <toolkit:Expander.Header>
+                                    <Frame CornerRadius="3" Padding="0" HasShadow="False" BorderColor="Gray"  BackgroundColor="{Binding Color}">
+                                        <StackLayout Style="{StaticResource ExpanderHeaderStyle}" BackgroundColor="{Binding Color}">
+                                            <Image Source="icon_asignatura.png" WidthRequest="20" HeightRequest="20" />
+                                            <Label Text="{Binding Modulo , StringFormat='Módulo {0}'}" FontSize="15" VerticalOptions="Center" Padding="5"/>
+                                            <Label Text="{Binding Materias}" FontSize="15" VerticalOptions="Center" Padding="15,0,0,0" 
+                              HorizontalOptions="FillAndExpand" WidthRequest="300" LineBreakMode="WordWrap" />
+                                        </StackLayout>
+                                    </Frame>
+                                </toolkit:Expander.Header>
+                                <toolkit:Expander.Content>
+                                    <Frame CornerRadius="5" Padding="0" HasShadow="False" BorderColor="Gray" >
+                                        <StackLayout Padding="10" BackgroundColor="White"  >
+                                            <StackLayout Padding="1" BackgroundColor="White" Margin="5" HorizontalOptions="FillAndExpand" Spacing="7">
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                                    <Image Source="icon_docente.png" WidthRequest="15" HeightRequest="15" Margin="5,0"/>
+                                                    <Label Text="{Binding Docentes, StringFormat='Docente: {0}'}"  WidthRequest="300" LineBreakMode="WordWrap" VerticalOptions="Center"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                                    <Image Source="icon_aula.png" WidthRequest="15" HeightRequest="15" Margin="5,0"/>
+                                                    <Label Text="{Binding Aula , StringFormat='Aula: {0}'}"  WidthRequest="300" LineBreakMode="WordWrap" VerticalOptions="Center"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                                    <Image Source="icon_calendar.png" WidthRequest="15" HeightRequest="15" Margin="5,0"/>
+                                                    <Label Text="{Binding FechaInicioFormatted, StringFormat='Desde: {0:dd/MM/yyyy}'}"  VerticalOptions="Center"/>
+                                                    <Image Source="icon_calendar.png" WidthRequest="15" HeightRequest="15" Margin="5,0"/>
+                                                    <Label Text="{Binding FechaFinFormatted, StringFormat='Hasta: {0:dd/MM/yyyy}'}"  VerticalOptions="Center"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Spacing="5">
+                                                    <Image Source="icon_time.png" WidthRequest="15" HeightRequest="15" Margin="5,0"/>
+                                                    <Label Text="Dias y Jornadas" HorizontalOptions="FillAndExpand"   VerticalOptions="Center"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                            <!-- Tabla de Jornadas -->
+                                            <Grid  Padding="10">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="2*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <CollectionView ItemsSource="{Binding HorarioDias}" Grid.Row="1" Grid.ColumnSpan="2"   HorizontalOptions="Center" WidthRequest="400">
+                                                    <CollectionView.ItemTemplate>
+                                                        <DataTemplate >
+                                                            <Grid HorizontalOptions="Center" >
+                                                                <Grid.RowDefinitions>
+                                                                    <RowDefinition Height="Auto"/>
+                                                                </Grid.RowDefinitions>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="100"/>
+                                                                    <!-- Ancho fijo de 100 unidades -->
+                                                                    <ColumnDefinition Width="250"/>
+                                                                    <!-- Ancho fijo de 200 unidades -->
+                                                                </Grid.ColumnDefinitions>
+
+                                                                <!-- Datos de la jornada -->
+                                                                <Frame Grid.Row="0" Grid.Column="0" BorderColor="Black" CornerRadius="0" Padding="0" Margin="0" BackgroundColor="#232a33">
+                                                                    <Label Text="{Binding Dia}" FontSize="13" Padding="5" VerticalOptions="Center" HorizontalOptions="Start" TextColor="White"/>
+                                                                </Frame>
+                                                                <Frame Grid.Row="0" Grid.Column="1" BorderColor="Black" CornerRadius="0" Padding="0" Margin="0">
+                                                                    <Label Text="{Binding HorasString}" FontSize="13" Padding="5" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                                                </Frame>
+                                                            </Grid>
+                                                        </DataTemplate>
+                                                    </CollectionView.ItemTemplate>
+                                                </CollectionView>
+                                            </Grid>
+                                        </StackLayout>
+                                    </Frame>
+                                </toolkit:Expander.Content>
+                            </toolkit:Expander>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </VerticalStackLayout>
+        </ScrollView>
+        <Frame Padding="0" HasShadow="True" CornerRadius="5" HeightRequest="100" WidthRequest="75" IsVisible="{Binding IsBusy}" BackgroundColor="Gray" HorizontalOptions="Center" >
+            <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding IsBusy}" Spacing="10">
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" 
+                   VerticalOptions="CenterAndExpand" HorizontalOptions="Center" BackgroundColor="Gray"
+                   Color="#D2B171" />
+                <Label Text="Cargando" FontSize="10"  IsVisible="{Binding IsBusy}"  TextColor="White" FontAttributes="Bold" Padding="10"/>
+            </StackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>

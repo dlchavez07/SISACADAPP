@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SISACADMovil.Views.MenuPrincipal">
+
+    <Grid>
+
+        <Image Source="carnet.png" Aspect="AspectFill"  />
+
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center" >
+
+            <Frame Padding="0" HasShadow="True" CornerRadius="5" WidthRequest="200" BorderColor="#d2b171"  BackgroundColor="Transparent" HorizontalOptions="Center">
+                <StackLayout Orientation="Horizontal"  VerticalOptions="Center" HorizontalOptions="Start" >
+                    <Image x:Name="imgPerfil"  WidthRequest="200" HeightRequest="205" />
+                </StackLayout>
+            </Frame>
+            <BoxView HeightRequest="20" BackgroundColor="Transparent"/>
+            <Frame Padding="0" HasShadow="True" CornerRadius="25" HeightRequest="35" WidthRequest="130" BackgroundColor="#d2b171" >
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" >
+                    <Image Source="icon_camara.png" HeightRequest="30" WidthRequest="30" />
+                    <Label Text="Subir Foto" TextColor="White" VerticalOptions="Center" />
+                </StackLayout>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnUploadPhotoButtonClicked" />
+                </Frame.GestureRecognizers>
+            </Frame>
+            <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center" Spacing="5" Padding="20">
+                <Label Text="{Binding Nombre}" FontSize="15" FontAttributes="Bold" HorizontalOptions="Center" Padding="10"/>
+                <Label Text="{Binding Carrera}" x:Name="carrera" FontSize="15" FontAttributes="Bold" HorizontalOptions="Center" Padding="10" IsVisible="False" />
+                <Label Text="{Binding Periodo}" x:Name="periodo" FontSize="15" FontAttributes="Bold" HorizontalOptions="Center" Padding="10" IsVisible="False"/>
+                <Label Text="Docente" x:Name="docente" FontSize="15" FontAttributes="Bold" HorizontalOptions="Center" Padding="10" IsVisible="False"/>
+            </StackLayout>
+
+            <Frame Padding="0" HasShadow="True" CornerRadius="5" HeightRequest="85" WidthRequest="85" BackgroundColor="#d2b171" HorizontalOptions="Center" >
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" Spacing="10">
+                    <Image x:Name="qrImage"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           HeightRequest="65"
+                           WidthRequest="65" />
+                </StackLayout>
+            </Frame>
+
+        </StackLayout>
+    </Grid>
+
+</ContentPage>
